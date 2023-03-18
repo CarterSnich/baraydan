@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/water.css@2/out/water.css">
+    <script src="https://unpkg.com/showdown/dist/showdown.min.js" defer></script>
+
+    <style>
+        body {
+            margin-bottom: 4rem;
+        }
+
+        body.optimize-mobile {
+            display: flex;
+            justify-content: center;
+        }
+
+        body.optimize-mobile #main {
+            width: 75%;
+        }
+
+        body.optimize-mobile #main pre {
+            align-content: center;
+            display: flex;
+            flex-direction: row;
+        }
+
+        body.optimize-mobile #main pre code {
+            width: fit-content;
+            margin: auto;
+        }
+
+        div#footer {
+            position: fixed;
+            bottom: 0;
+            right: 0;
+            width: fit-content;
+            background-color: inherit;
+
+            display: flex;
+            flex-direction: row;
+            justify-content: flex-end;
+
+            padding: .5rem;
+            border-top-left-radius: 10px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div id="main"></div>
+
+
+    <div id="footer">
+        <label for="toggle-optimize">
+            <input type="checkbox" id="toggle-optimize">
+            Optimize mobile
+        </label>
+    </div>
+
+    <script>
+        fetch('./README.md')
+            .then(res => res.text())
+            .then(md => {
+                let converter = new showdown.Converter({
+                    underline: true
+                })
+                let text = md
+                document.getElementById('main').innerHTML = converter.makeHtml(text)
+            })
+            .catch(err => console.error(err))
+
+        document.getElementById('toggle-optimize').addEventListener('change', function () {
+            if (this.checked) {
+                document.querySelector('body').classList.add('optimize-mobile')
+            } else {
+                document.querySelector('body').classList.remove('optimize-mobile')
+            }
+        })
+    </script>
+</body>
+
+</html>
