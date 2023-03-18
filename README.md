@@ -28,8 +28,8 @@ Php 80 pesos an total na shipping fee. Gin iban na hito han vouchers. Baraghin a
 - Team Bryan
 - Team Hentai
 - Special Order (separate lageap hin shipping)
-  - Joe Mar
-  - Eubert
+    - Joe Mar
+    - Eubert
 
 Turunga hit shipping fee
 
